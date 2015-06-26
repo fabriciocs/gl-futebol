@@ -10,29 +10,28 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-
 /**
  * The persistent class for the telefone database table.
  * 
  */
 @Entity
-@Table(name="telefone")
-@NamedQuery(name="Telefone.findAll", query="SELECT t FROM Telefone t")
+@Table(name = "telefone")
+@NamedQuery(name = "Telefone.findAll", query = "SELECT t FROM Telefone t")
 public class Telefone implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique = true, nullable = false)
 	private int id;
 
-	@Column(nullable=false, length=2)
+	@Column(nullable = false, length = 2)
 	private String ddd;
 
-	@Column(length=255)
+	@Column(length = 255)
 	private String descricao;
 
-	@Column(nullable=false, length=9)
+	@Column(nullable = false, length = 9)
 	private String numero;
 
 	public Telefone() {

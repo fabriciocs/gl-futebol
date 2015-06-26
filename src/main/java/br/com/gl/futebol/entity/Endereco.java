@@ -3,47 +3,45 @@ package br.com.gl.futebol.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 /**
  * The persistent class for the endereco database table.
  * 
  */
 @Entity
-@Table(name="endereco")
-@NamedQuery(name="Endereco.findAll", query="SELECT e FROM Endereco e")
+@Table(name = "endereco")
 public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique = true, nullable = false)
 	private int id;
 
-	@Column(length=255)
+	@Column(length = 255)
 	private String bairro;
 
-	@Column(length=255)
+	@Column(length = 255)
 	private String cep;
 
-	@Column(length=255)
+	@Column(length = 255)
 	private String cidade;
 
-	@Column(length=255)
+	@Column(length = 255)
 	private String complemento;
 
-	@Column(length=255)
+	@Column(length = 255)
 	private String descricao;
 
-	@Column(length=255)
+	@Column(length = 255)
 	private String estado;
 
-	@Column(length=255)
+	@Column(length = 255)
 	private String logradouro;
 
-	@Column(length=255)
+	@Column(length = 255)
 	private String numero;
 
-	@Column(length=255)
+	@Column(length = 255)
 	private String referencia;
 
 	public Endereco() {

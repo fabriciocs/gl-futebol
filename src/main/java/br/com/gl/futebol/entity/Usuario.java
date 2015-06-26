@@ -4,68 +4,40 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the usuario database table.
  * 
  */
 @Entity
-@Table(name="usuario")
-@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
+@Table(name = "usuario")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique = true, nullable = false)
 	private int id;
 
-	@Column(nullable=false, length=255)
+	@Column(nullable = false, length = 255)
 	private String nome;
 
-
-	//bi-directional many-to-many association to Agendamento
+	// bi-directional many-to-many association to Agendamento
 	@ManyToMany
-	@JoinTable(
-		name="confirmacao_presenca"
-		, joinColumns={
-			@JoinColumn(name="usuario", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="agendamento", nullable=false)
-			}
-		)
+	@JoinTable(name = "confirmacao_presenca", joinColumns = { @JoinColumn(name = "usuario", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "agendamento", nullable = false) })
 	private List<Agendamento> agendamentos;
 
-	//uni-directional many-to-many association to Endereco
+	// uni-directional many-to-many association to Endereco
 	@OneToMany
-	@JoinTable(
-		name="usuario_endereco"
-		, joinColumns={
-			@JoinColumn(name="usuario", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="endereco", nullable=false)
-			}
-		)
+	@JoinTable(name = "usuario_endereco", joinColumns = { @JoinColumn(name = "usuario", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "endereco", nullable = false) })
 	private List<Endereco> enderecos;
 
-	//bi-directional one-to-one association to Credencial
 	@OneToOne
-	@JoinColumn(name="credencial", nullable=false)
+	@JoinColumn(name = "credencial", nullable = false)
 	private Credencial credencialBean;
 
-	//bi-directional many-to-many association to Telefone
+	// bi-directional many-to-many association to Telefone
 	@OneToMany
-	@JoinTable(
-		name="usuario_telefone"
-		, joinColumns={
-			@JoinColumn(name="usuario", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="telefone", nullable=false)
-			}
-		)
+	@JoinTable(name = "usuario_telefone", joinColumns = { @JoinColumn(name = "usuario", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "telefone", nullable = false) })
 	private List<Telefone> telefones;
 
 	public Usuario() {
@@ -95,20 +67,19 @@ public class Usuario implements Serializable {
 		this.agendamentos = agendamentos;
 	}
 
-	public Agendamento addAgendamentos(Agendamento agendamentos) {
-		getAgendamentos().add(agendamentos);
-		agendamentos.setResponsavel(this);
+	public Agendamento addAgendamento(Agendamento agendamento) {
+		getAgendamentos().add(agendamento);
+		agendamento.setResponsavel(this);
 
-		return agendamentos;
+		return agendamento;
 	}
 
-	public Agendamento removeAgendamentos(Agendamento agendamentos) {
-		getAgendamentos().remove(agendamentos);
-		agendamentos.setResponsavel(null);
+	public Agendamento removeAgendamento(Agendamento agendamento) {
+		getAgendamentos().remove(agendamento);
+		agendamento.setResponsavel(null);
 
-		return agendamentos;
+		return agendamento;
 	}
-
 
 	public List<Endereco> getEnderecos() {
 		return this.enderecos;
