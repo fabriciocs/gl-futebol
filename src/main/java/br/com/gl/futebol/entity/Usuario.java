@@ -10,6 +10,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "usuario")
+@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,6 +32,7 @@ public class Usuario implements Serializable {
 	@JoinTable(name = "usuario_endereco", joinColumns = { @JoinColumn(name = "usuario", nullable = false) }, inverseJoinColumns = { @JoinColumn(name = "endereco", nullable = false) })
 	private List<Endereco> enderecos;
 
+	// bi-directional one-to-one association to Credencial
 	@OneToOne
 	@JoinColumn(name = "credencial", nullable = false)
 	private Credencial credencialBean;
@@ -67,18 +69,18 @@ public class Usuario implements Serializable {
 		this.agendamentos = agendamentos;
 	}
 
-	public Agendamento addAgendamento(Agendamento agendamento) {
-		getAgendamentos().add(agendamento);
-		agendamento.setResponsavel(this);
+	public Agendamento addAgendamentos(Agendamento agendamentos) {
+		getAgendamentos().add(agendamentos);
+		agendamentos.setResponsavel(this);
 
-		return agendamento;
+		return agendamentos;
 	}
 
-	public Agendamento removeAgendamento(Agendamento agendamento) {
-		getAgendamentos().remove(agendamento);
-		agendamento.setResponsavel(null);
+	public Agendamento removeAgendamentos(Agendamento agendamentos) {
+		getAgendamentos().remove(agendamentos);
+		agendamentos.setResponsavel(null);
 
-		return agendamento;
+		return agendamentos;
 	}
 
 	public List<Endereco> getEnderecos() {

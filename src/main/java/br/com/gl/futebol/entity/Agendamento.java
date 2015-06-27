@@ -5,48 +5,47 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
-
 /**
  * The persistent class for the agendamento database table.
  * 
  */
 @Entity
-@Table(name="agendamento")
+@Table(name = "agendamento")
 public class Agendamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(unique = true, nullable = false)
 	private int id;
 
-	@Column(nullable=false, length=255)
+	@Column(nullable = false, length = 255)
 	private String descricao;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private Timestamp fim;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private Timestamp inicio;
 
-	@Column(name="minimo_participantes", nullable=false)
+	@Column(name = "minimo_participantes", nullable = false)
 	private int minimoParticipantes;
 
-	@Column(name="valor_total", nullable=false)
+	@Column(name = "valor_total", nullable = false)
 	private double valorTotal;
 
-	//uni-directional many-to-one association to Endereco
+	// uni-directional many-to-one association to Endereco
 	@ManyToOne
-	@JoinColumn(name="endereco", nullable=false)
+	@JoinColumn(name = "endereco", nullable = false)
 	private Endereco endereco;
 
-	//bi-directional many-to-one association to Usuario
+	// bi-directional many-to-one association to Usuario
 	@ManyToOne
-	@JoinColumn(name="responsavel", nullable=false)
+	@JoinColumn(name = "responsavel", nullable = false)
 	private Usuario responsavel;
 
-	//bi-directional many-to-many association to Usuario
-	@ManyToMany(mappedBy="agendamentos")
+	// bi-directional many-to-many association to Usuario
+	@ManyToMany(mappedBy = "agendamentos")
 	private List<Usuario> usuarios;
 
 	public Agendamento() {
