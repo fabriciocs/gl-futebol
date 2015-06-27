@@ -21,7 +21,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<phonegap-build.server>phonegap-build</phonegap-build.server>
 	</properties>
 
 	<dependencies>
@@ -41,11 +40,6 @@
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -88,26 +82,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>com.github.chrisprice</groupId>
-				<artifactId>phonegap-build-maven-plugin</artifactId>
-				<version>0.0.2</version>
-				<executions>
-					<execution>
-						<id>phonegap-build</id>
-						<!-- the goals are lifecycle bound by default -->
-						<goals>
-							<goal>clean</goal>
-							<goal>build</goal>
-						</goals>
-						<configuration>
-							<platforms>
-								<platform>android</platform>
-							</platforms>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
