@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "credencial")
 @NamedQuery(name = "Credencial.findAll", query = "SELECT c FROM Credencial c")
-public class Credencial implements Serializable {
+public class Credencial implements Serializable, HasID<Integer> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -37,7 +37,7 @@ public class Credencial implements Serializable {
 	public Credencial() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 

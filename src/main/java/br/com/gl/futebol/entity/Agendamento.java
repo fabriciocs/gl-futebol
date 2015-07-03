@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "agendamento")
-public class Agendamento implements Serializable {
+public class Agendamento implements Serializable, HasID<Integer> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -51,7 +51,7 @@ public class Agendamento implements Serializable {
 	public Agendamento() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 

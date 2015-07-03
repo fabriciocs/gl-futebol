@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "usuario")
 @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, HasID<Integer> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -45,7 +45,7 @@ public class Usuario implements Serializable {
 	public Usuario() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 

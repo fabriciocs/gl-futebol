@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "endereco")
 @NamedQuery(name = "Endereco.findAll", query = "SELECT e FROM Endereco e")
-public class Endereco implements Serializable {
+public class Endereco implements Serializable, HasID<Integer> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -48,7 +48,7 @@ public class Endereco implements Serializable {
 	public Endereco() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 

@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "telefone")
 @NamedQuery(name = "Telefone.findAll", query = "SELECT t FROM Telefone t")
-public class Telefone implements Serializable {
+public class Telefone implements Serializable, HasID<Integer> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -37,7 +37,7 @@ public class Telefone implements Serializable {
 	public Telefone() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
