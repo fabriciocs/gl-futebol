@@ -1,8 +1,21 @@
 package br.com.gl.futebol.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Max;
 
 /**
  * The persistent class for the usuario database table.
@@ -20,6 +33,7 @@ public class Usuario implements Serializable, HasID<Integer> {
 	private int id;
 
 	@Column(nullable = false, length = 255)
+	@Max(255)
 	private String nome;
 
 	// bi-directional many-to-many association to Agendamento
@@ -35,7 +49,7 @@ public class Usuario implements Serializable, HasID<Integer> {
 	// bi-directional one-to-one association to Credencial
 	@OneToOne
 	@JoinColumn(name = "credencial", nullable = false)
-	private Credencial credencialBean;
+	private Credencial credencial;
 
 	// bi-directional many-to-many association to Telefone
 	@OneToMany
@@ -91,12 +105,12 @@ public class Usuario implements Serializable, HasID<Integer> {
 		this.enderecos = enderecos;
 	}
 
-	public Credencial getCredencialBean() {
-		return this.credencialBean;
+	public Credencial getCredencial() {
+		return this.credencial;
 	}
 
-	public void setCredencialBean(Credencial credencialBean) {
-		this.credencialBean = credencialBean;
+	public void setCredencial(Credencial credencialBean) {
+		this.credencial = credencialBean;
 	}
 
 	public List<Telefone> getTelefones() {

@@ -3,10 +3,22 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
 <body>
 	<ui:composition>
-		<h1>Esse conteúdo vai aparecer na header</h1>
+		<p:menubar>
+			<p:menuitem value="Usuario" outcome="/resources/modulos/usuario/usuario.xhtml"
+				icon="ui-icon-close" />
+
+			<f:facet name="options">
+				<p:inputText style="margin-right:10px" placeholder="Search" />
+				<p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+			</f:facet>
+		</p:menubar>
 	</ui:composition>
 </body>
 </html>

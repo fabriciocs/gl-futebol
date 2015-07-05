@@ -1,7 +1,18 @@
 package br.com.gl.futebol.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Max;
+
+import org.hibernate.validator.constraints.Email;
 
 /**
  * The persistent class for the credencial database table.
@@ -21,17 +32,21 @@ public class Credencial implements Serializable, HasID<Integer> {
 	@Column(nullable = false)
 	private Boolean administrador;
 
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false, length = 50, unique = true)
+	@Email
+	@Max(50)
 	private String email;
 
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false, length = 50, unique = true)
+	@Max(50)
 	private String login;
 
 	@Column(nullable = false, length = 64)
+	@Max(64)
 	private String senha;
 
 	// bi-directional one-to-one association to Usuario
-	@OneToOne(mappedBy = "credencialBean")
+	@OneToOne(mappedBy = "credencial")
 	private Usuario usuario;
 
 	public Credencial() {
