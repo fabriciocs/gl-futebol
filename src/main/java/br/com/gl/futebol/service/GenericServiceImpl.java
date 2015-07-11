@@ -18,9 +18,9 @@ public abstract class GenericServiceImpl<T extends HasID<?>> implements
 	protected JpaRepository<T, ?> repository;
 
 	@Override
-	public GenericService<T> salvar(T entidade) throws ServiceException {
-		repository.save(entidade);
-		return this;
+	public T salvar(T entidade) throws ServiceException {
+		return repository.save(entidade);
+		
 	}
 
 	@Override

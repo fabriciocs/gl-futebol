@@ -1,12 +1,243 @@
 @CHARSET "ISO-8859-1";
 
-body{
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.best-main {
+	position: relative;
+	min-height: 100%;
+}
+
+.bast-main-content {
+	padding-top: 50px;
+	padding-bottom: 70px;
+}
+
+.best-bottom {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+}
+
+.ui-widget {
+	font-size: 13px;
+}
+
+.input-group-btn .ui-corner-all {
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+}
+
+.table .ui-expanded-row-content td {
+	text-align: left;
+}
+
+.table-responsive .filterHidden {
+	display: none !important;
+}
+
+.navbar-toggle {
+	margin: 0;
+	padding: 0;
+}
+
+.best-slide {
+	font-size: 2.5em;
+	line-height: 0.50em;
+}
+
+.navbar-collapse {
+	max-height: none;
+}
+
+.best-row-top {
+	margin-top: 5%;
+}
+
+/* Menu BestSmart */
+.best-sidebar {
+	width: 100%;
+	text-align: center;
+}
+
+.best-sidebar-container {
+	padding: 15px;
+	margin-bottom: 15px;
+}
+
+.best-sidebar img {
+	margin: 5%;
+}
+
+.best-sidebar table {
 	margin: 0 auto;
 }
-div {
+
+.best-sidebar .ui-menu {
+	margin: 0 auto;
+	background: none;
+}
+
+.best-sidebar .ui-widget-content {
+	border: none;
+}
+
+/*table*/
+.table .ui-datatable-header {
+	text-align: left;
+}
+
+.table tr>td {
+	text-align: center;
+}
+
+.table tr>td>a {
+	padding: 0 1%;
+}
+
+/*Label table filter*/
+.ui-datatable-header .input-group-addon {
+	border: none;
+	background: none;
+}
+
+.ui-datatable-header .input-group-btn {
+	font-size: 1em;
+}
+
+/*Button table filter*/
+.input-group-btn .ui-button {
+	padding: 1px;
+}
+
+/* Container */
+.best-container {
+	padding: 2% 1%;
+}
+
+.best-container-buttons {
+	margin-top: 1%;
+}
+
+.best-form-login {
+	max-width: 280px;
+	margin: 60px auto 10px;
+}
+
+/* Mensagem */
+.mensagemInfo {
+	color: green;
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+.mensagemError {
+	color: red;
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+.mensagemWarn {
+	color: #DAA520;
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+.animated .ui-progressbar-value {
+	background-image: url("/resources/img/prog.gif");
+}
+
+.status-aguardando-conclusao {
+	background-color: yellow;
+}
+
+.status-cotacao-concluida {
+	background-color: orange;
+}
+
+.status-aguardando-aprovacao {
 	background-color: red;
 }
 
-#page{
-	background-color:blue;
+.status-pedido-gerado {
+	background-color: green;
+}
+
+.status-pedido-concluido {
+	background-color: dark-green;
+}
+
+@media ( max-width : 990px) {
+	.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2,
+		.col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3,
+		.col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5,
+		.col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6,
+		.col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8,
+		.col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9,
+		.col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11,
+		.col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12
+		{
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.best-header {
+		margin-bottom: 40px;
+	}
+	.row {
+		margin: 0;
+	}
+}
+
+.best-input-sm input {
+	height: 30px;
+	padding: 5px 10px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px;
+}
+
+.best-form-control input {
+	display: block;
+	width: 100%;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, box-shadow
+		ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.best-button {
+	padding: 3px 12px;
+}
+
+.best-footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	/*  height: 50px; */
+}
+
+.ui-corner-all li {
+	color: #555 !important;
+}
+
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 95% !important;
+}
+
+.table-responsive .filterHidden {
+	display: none !important;
 }

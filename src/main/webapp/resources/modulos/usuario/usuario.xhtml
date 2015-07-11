@@ -1,9 +1,117 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <ui:composition template="/templates/layout.xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
 	<ui:define name="content">
-		<h1>Usuario</h1>
+		<p:panel rendered="#{usuarioCtrl.stateCtrl.isLer()}">
+			<p:outputPanel styleClass="table-responsive">
+				<p:dataTable id="listaUsuario"
+					value="#{usuarioCtrl.usuarioDataModel}" var="usuario"
+					widgetVar="usuarioWv" rows="15" paginator="true" lazy="true"
+					rowKey="#{usuario.id}" paginatorPosition="bottom"
+					styleClass="table" selection="#{usuarioCtrl.entidade}"
+					selectionMode="single">
+					<f:facet name="header">
+						<p:outputPanel styleClass="input-group">
+							<h:outputText styleClass="input-group-addon" value="Filtro:" />
+							<p:inputText id="globalFilter" styleClass="form-control input-sm"
+								onkeyup="if (event.keyCode == 13) {usuarioWv.filter();}" />
+							<h:panelGroup styleClass="input-group-btn">
+								<p:commandButton value="Buscar" onclick="usuarioWv.filter()"
+									immediate="true" ajax="true" update="@form" />
+							</h:panelGroup>
+						</p:outputPanel>
+					</f:facet>
+
+					<p:ajax event="rowSelect" update="@form"></p:ajax>
+
+					<p:column styleClass="campoChave" headerText="Código"
+						filterStyleClass="filterHidden" filterBy="#{usuario.id}"
+						sortBy="#{usuario.id}">
+						<h:outputText value="#{usuario.id}" />
+					</p:column>
+
+					<p:column headerText="Nome:" filterBy="#{usuario.nome}"
+						filterStyleClass="filterHidden" sortBy="#{usuario.nome}">
+						<h:outputText value="#{usuario.nome}" />
+					</p:column>
+
+					<p:column headerText="Login:"
+						filterBy="#{usuario.credencial.login}"
+						filterStyleClass="filterHidden"
+						sortBy="#{usuario.credencial.login}">
+						<h:outputText value="#{usuario.credencial.login}" />
+					</p:column>
+					<p:column headerText="Email:"
+						filterBy="#{usuario.credencial.email}"
+						filterStyleClass="filterHidden"
+						sortBy="#{usuario.credencial.email}">
+						<h:outputText value="#{usuario.credencial.email}" />
+					</p:column>
+
+				</p:dataTable>
+			</p:outputPanel>
+		</p:panel>
+		
+		<p:panel>
+			<p:outputPanel styleClass="row">
+				<p:outputPanel styleClass="col-md-6">
+					<p:outputPanel styleClass="form-group">
+						<p:outputLabel value="Nome:" />
+						<h:panelGroup>
+							<p:inputText id="inputNome" styleClass="form-control input-sm"
+								value="#{usuarioCtrl.entidade.nome}" required="true" readonly="#{usuarioCtrl.stateCtrl.isLer()}">
+								<f:validateBean />
+							</p:inputText>
+							<h:message for="inputNome" errorClass="mensagemError"
+								infoClass="mensagemInfo" warnClass="mensagemWarn" />
+						</h:panelGroup>
+					</p:outputPanel>
+					<p:outputPanel styleClass="form-group">
+						<p:outputLabel value="Email:" />
+						<h:panelGroup>
+							<p:inputText id="inputEmail" styleClass="form-control input-sm"
+								value="#{usuarioCtrl.entidade.credencial.email}" required="true" readonly="#{usuarioCtrl.stateCtrl.isLer()}">
+								<f:validateBean />
+							</p:inputText>
+							<h:message for="inputEmail" errorClass="mensagemError"
+								infoClass="mensagemInfo" warnClass="mensagemWarn" />
+						</h:panelGroup>
+					</p:outputPanel>
+					<p:outputPanel styleClass="form-group">
+						<p:outputLabel value="Login:" />
+						<h:panelGroup>
+							<p:inputText id="inputLogin" styleClass="form-control input-sm"
+								value="#{usuarioCtrl.entidade.credencial.login}" required="true" readonly="#{usuarioCtrl.stateCtrl.isLer()}">
+								<f:validateBean />
+							</p:inputText>
+							<h:message for="inputLogin" errorClass="mensagemError"
+								infoClass="mensagemInfo" warnClass="mensagemWarn" />
+						</h:panelGroup>
+					</p:outputPanel>
+				</p:outputPanel>
+				<p:outputPanel styleClass="col-md-6">
+					<p:outputPanel styleClass="form-group">
+						<h:panelGroup>
+							<p:selectBooleanCheckbox disabled="#{usuarioCtrl.stateCtrl.isLer()}"
+								value="#{usuarioCtrl.entidade.credencial.administrador}"
+								itemLabel="administrador" />
+						</h:panelGroup>
+					</p:outputPanel>
+				</p:outputPanel>
+			</p:outputPanel>
+		</p:panel>
+		<p:panel>
+			<p:panel styleClass="control-group best-container-buttons">
+				<p:commandButton value="Novo" immediate="true"
+					action="#{usuarioCtrl.novo}"
+					update="@form" />
+				<p:commandButton value="Salvar" ajax="false"
+					actionListener="#{usuarioCtrl.salvar}"
+					update="@form"/>
+			</p:panel>
+		</p:panel>
 	</ui:define>
 </ui:composition>

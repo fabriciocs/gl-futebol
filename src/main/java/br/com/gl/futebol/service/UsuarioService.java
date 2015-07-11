@@ -17,10 +17,12 @@ import br.com.gl.futebol.repository.UsuarioRepository;
 public class UsuarioService extends GenericServiceImpl<Usuario> implements IUsuarioService {
 
 	private UsuarioRepository repository;
+	private ICredencialService credencialService;
 
 	@Autowired
-	public UsuarioService(UsuarioRepository repository) {
+	public UsuarioService(UsuarioRepository repository, ICredencialService credencialService) {
 		super(repository);
+		this.credencialService = credencialService;
 		this.repository = repository;
 	}
 
@@ -42,6 +44,12 @@ public class UsuarioService extends GenericServiceImpl<Usuario> implements IUsua
 	@Override
 	public Usuario get(Number parseNumber) {
 		return repository.getOne(parseNumber.intValue());
+	}
+	@Override
+	public Usuario salvar(Usuario entidade)
+			throws ServiceException {
+		entidade.setCredencial(credencialService.salvar(entidade.getCredencial()));
+		return super.salvar(entidade);
 	}
 
 }

@@ -35,8 +35,12 @@ public class GenericLazyDataModel<T extends HasID<?>> extends LazyDataModel<T> {
 		if (search == null) {
 			search = "";
 		}
+		
 		Direction direction = (SortOrder.ASCENDING == sortOrder) ? Direction.ASC
 				: Direction.DESC;
+		if(sortField==null){
+			sortField = "id";
+		}
 		Pageable pageable = new PageRequest((first / pageSize), pageSize,
 				direction, sortField);
 
@@ -46,7 +50,11 @@ public class GenericLazyDataModel<T extends HasID<?>> extends LazyDataModel<T> {
 	}
 
 	public T getRowData(String rowKey) {
-		return service.get(NumberUtils.parseNumber(rowKey, Integer.class));
+		Integer id = NumberUtils.parseNumber(rowKey, Integer.class);
+		if(id <= 0 ){
+			return null;
+		}
+		return service.get(id);
 	}
 
 	public Object getRowKey(T object) {

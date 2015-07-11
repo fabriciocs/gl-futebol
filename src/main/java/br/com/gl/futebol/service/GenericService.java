@@ -9,7 +9,7 @@ import br.com.gl.futebol.entity.HasID;
 
 public interface GenericService<T extends HasID<?>> {
 
-	GenericService<T> salvar(T entidade) throws ServiceException;
+	T salvar(T entidade) throws ServiceException;
 
 	GenericService<T> remover(T entidade) throws ServiceException;
 

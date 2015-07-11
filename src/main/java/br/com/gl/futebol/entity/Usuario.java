@@ -58,6 +58,10 @@ public class Usuario implements Serializable, HasID<Integer> {
 
 	public Usuario() {
 	}
+	
+	public Usuario(Credencial credencial){
+		this.credencial = credencial;
+	}
 
 	public Integer getId() {
 		return this.id;

@@ -30,7 +30,7 @@ public class Credencial implements Serializable, HasID<Integer> {
 	private int id;
 
 	@Column(nullable = false)
-	private Boolean administrador;
+	private boolean administrador;
 
 	@Column(nullable = false, length = 50, unique = true)
 	@Email
